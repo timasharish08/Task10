@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resource: {fileID: 1735899266006279695}
-  _delay: 5
+  _spawnDelay: 5
 --- !u!1 &5744484155710616402
 GameObject:
   m_ObjectHideFlags: 0

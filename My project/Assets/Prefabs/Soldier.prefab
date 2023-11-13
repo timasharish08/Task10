@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4071488387133116563}
   - component: {fileID: 401262069453236152}
   - component: {fileID: 8804612825417253908}
+  - component: {fileID: 6406696829931066177}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -97,9 +98,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f034cb067f87efe459e07bb9876180df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hands: {fileID: 5662009323674980848}
+--- !u!114 &6406696829931066177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3306628367010149460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8921e5ad63feb04cbf0df1984cd3519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _speed: 1
-  _interactionRange: 0.5
-  _hands: {fileID: 6711473764860677827}
+  _interactionRange: 0.25
 --- !u!1 &7225389688259666291
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6711473764860677827}
+  - component: {fileID: 5662009323674980848}
   m_Layer: 0
   m_Name: Hands
   m_TagString: Untagged
@@ -131,3 +145,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6922916455095073637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5662009323674980848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7225389688259666291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ced5e16d4c57b4cb008e71e12669b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

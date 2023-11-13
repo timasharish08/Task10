@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3971513057611841932}
   - component: {fileID: 709664086507187284}
   - component: {fileID: 393618990209932944}
+  - component: {fileID: 4925379287193960905}
   m_Layer: 0
   m_Name: MilitaryBase
   m_TagString: Untagged
@@ -119,13 +120,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f432ab2bcf2dcea4db39ce3cb68d2e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8804612825417253908, guid: d74f39c1f5cb7f84f97f82054634b0c9, type: 3}
-  _spawnCost: 3
-  _startSoldiersCount: 3
   _scanDelay: 5
-  _copyPrefab: {fileID: 393618990209932944}
-  _copyCost: 5
   _flag: {fileID: 6801729948170903500}
+--- !u!114 &4925379287193960905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543332266989567414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7cebbd94bd5e34492eff5ffaa731e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soldierPrefab: {fileID: 8804612825417253908, guid: d74f39c1f5cb7f84f97f82054634b0c9, type: 3}
+  _soldierCost: 3
+  _startSoldiersCount: 3
+  _basePrefab: {fileID: 393618990209932944}
+  _baseCost: 5
 --- !u!1 &666435960498553213
 GameObject:
   m_ObjectHideFlags: 0

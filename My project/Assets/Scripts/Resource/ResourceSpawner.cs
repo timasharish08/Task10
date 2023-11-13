@@ -4,13 +4,13 @@ using UnityEngine;
 public class ResourceSpawner : MonoBehaviour
 {
     [SerializeField] private Resource _resource;
-    [SerializeField] private float _delay;
+    [SerializeField] private float _spawnDelay;
 
-    private WaitForSeconds wait;
+    private WaitForSeconds _delay;
 
     private void Awake()
     {
-        wait = new WaitForSeconds(_delay);
+        _delay = new WaitForSeconds(_spawnDelay);
     }
 
     private void OnEnable()
@@ -30,7 +30,9 @@ public class ResourceSpawner : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        yield return wait;
+        yield return _delay;
+
+        _resource.transform.parent = transform;
         _resource.transform.position = transform.position;
         _resource.gameObject.SetActive(true);
     }

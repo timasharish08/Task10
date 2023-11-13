@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MilitaryBase : MonoBehaviour
 {
-    [SerializeField] private Soldier _prefab;
-    [SerializeField] private int _spawnCost;
-    [SerializeField] private int _startSoldiersCount;
+    public event UnityAction ResourceTaked;
 
     [SerializeField] private float _scanDelay;
 
-    [SerializeField] private MilitaryBase _copyPrefab;
-    [SerializeField] private int _copyCost;
     [SerializeField] private Flag _flag;
 
     private List<Soldier> _soldiers;
 
     private List<Resource> _scanedResources;
-    private int _resourceCount;
+
+    public Flag Flag => _flag;
 
     private void Awake()
     {
@@ -34,9 +32,6 @@ public class MilitaryBase : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < _startSoldiersCount; i++)
-            Spawn();
-
         StartCoroutine(Scaning(new WaitForSeconds(_scanDelay)));
     }
 
@@ -52,6 +47,12 @@ public class MilitaryBase : MonoBehaviour
         _scanedResources.Remove(resource);
     }
 
+    public void AddSoldier(Soldier soldier)
+    {
+        soldier.Init(this);
+        _soldiers.Add(soldier);
+    }
+
     public void PlaceFlag(Vector3 position)
     {
         _flag.Place(position);
@@ -59,40 +60,9 @@ public class MilitaryBase : MonoBehaviour
 
     public void Take(Resource resource)
     {
-        _resourceCount++;
         resource.Destroy();
-        TrySpawn();
+        ResourceTaked.Invoke();
         TryGiveJob();
-    }
-
-    private void TrySpawn()
-    {
-        if (_flag.gameObject.activeSelf)
-        {
-            if (_resourceCount < _copyCost)
-                return;
-
-            _resourceCount -= _copyCost;
-            Copy();
-        }
-        else if (_resourceCount >= _spawnCost)
-        {
-            _resourceCount -= _spawnCost;
-            Spawn();
-        }
-    }
-
-    private void Copy()
-    {
-        _flag.Remove();
-        Instantiate(_copyPrefab, _flag.transform.position, Quaternion.identity);
-    }
-
-    private void Spawn()
-    {
-        Soldier soldier = Instantiate(_prefab, transform.position, Quaternion.identity);
-        soldier.Init(this);
-        _soldiers.Add(soldier);
     }
 
     private void TryGiveJob()
@@ -110,7 +80,7 @@ public class MilitaryBase : MonoBehaviour
         }
     }
 
-    private IEnumerator Scaning(WaitForSeconds wait)
+    private IEnumerator Scaning(WaitForSeconds delay)
     {
         Resource[] resources = FindObjectsOfType<Resource>();
 
@@ -125,7 +95,7 @@ public class MilitaryBase : MonoBehaviour
         }
 
         TryGiveJob();
-        yield return wait;
-        StartCoroutine(Scaning(wait));
+        yield return delay;
+        StartCoroutine(Scaning(delay));
     }
 }
